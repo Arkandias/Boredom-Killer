@@ -6,6 +6,18 @@ class Player {
     public $name;
     public $id;
     public $game_list;
+
+    function __construct($id, $name = false) {
+      $this->id = $id;
+      if ($name) {
+        $this->name = $name;
+      }
+    }
+
+    public function getOwnedGames() {
+      global $api;
+      $this->game_list = $api->GetOwnedGames($this->id);
+    }
   }
 ?>
 <!DOCTYPE html>
@@ -19,12 +31,13 @@ class Player {
     <?php
       //$player1 = $_REQUEST['player1'];
       //$player2 = $_REQUEST['player2'];
-      $player1 = new Player();
-      $player2 = new Player();
-      $player1->id = '76561197997640408';
-      $player2->id = '76561197994769476';
+      $player1 = new Player('76561197997640408');
+      $player2 = new Player('76561197994769476');
 
-      $player1->game_list = $api->GetOwnedGames($player1->id);
+      $player1->getOwnedGames();
+      foreach ($player1->game_list as $key) {
+        echo "<p>{$key['appid']}</p>";
+      }
     ?>
   </div>
 </body>
