@@ -6,6 +6,15 @@ class Player {
     public $name;
     public $id;
     public $game_list;
+
+    function __construct() {}
+    function __construct1($id) {
+        $this->id = $id;
+    }
+    function __construct2($name, $id) {
+        $this->name = $name;
+        $this->id = $id;
+    }
   }
 ?>
 <!DOCTYPE html>
@@ -19,12 +28,10 @@ class Player {
     <?php
 //$player1 = $_REQUEST['player1'];
 //$player2 = $_REQUEST['player2'];
-$player1 = new Player();
-$player2 = new Player();
-$player1->id = 76561197997640408;
-$player2->id = 76561197994769476;
+$player1 = new Player('76561197997640408');
+$player2 = new Player('76561197994769476');
 
-echo $api->AppDetails(404);
+echo $api->AppDetails('404');
     ?>
   </div>
 </body>
