@@ -6,15 +6,13 @@
 </head>
 <body>
 <div>
-  <?php
-  class SteamApi {
-      $url = 'http://...';
-      public function AppDetails($gameID) {
-      }
-  }
-  $api = SteamApi();
-  ?>  
+<?php
+  require_once 'steamApi.php';
+  $api = new SteamApi();
+  echo $api->AppDetails('a');
+  ?>
+</div>
+<div>
 </div>
 </body>
 </html>
-
