@@ -1,11 +1,5 @@
-<?php
-class SteamApi {
-    $url = 'http://...';
-    public function AppDetails($gameID) {
-      return $gameID;
-    }
-}
-$api = SteamApi();
+<?php require_once 'php/steamApi.php';
+  $api = new SteamApi();
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,8 +9,9 @@ $api = SteamApi();
 </head>
 <body>
   <div>
-    <?php $api.AppDetails('Test'); ?>
+  <?php
+    echo $api->AppDetails('a');
+    ?>
   </div>
 </body>
 </html>
-
