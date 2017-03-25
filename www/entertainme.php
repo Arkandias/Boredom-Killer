@@ -10,8 +10,8 @@
 <body>
   <div>
   <?php
-    echo $api->AppDetails('a');
-    ?>
+    echo (string)($api->GetOwnedGames('76561197997640408'));
+  ?>
   </div>
 </body>
 </html>
