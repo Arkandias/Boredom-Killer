@@ -1,3 +1,12 @@
+<?php
+class SteamApi {
+    $url = 'http://...';
+    public function AppDetails($gameID) {
+      return $gameID;
+    }
+}
+$api = SteamApi();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,16 +14,9 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-<div>
-  <?php
-  class SteamApi {
-      $url = 'http://...';
-      public function AppDetails($gameID) {
-      }
-  }
-  $api = SteamApi();
-  ?>  
-</div>
+  <div>
+    <?php $api.AppDetails('Test'); ?>
+  </div>
 </body>
 </html>
 
