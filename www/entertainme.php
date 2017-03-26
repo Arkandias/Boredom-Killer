@@ -2,6 +2,10 @@
 require_once 'php/steamApi.php';
 $api = new SteamApi();
 
+function generateGameDiv($gameData) {
+  return "<div class='game-container'><a href='http://store.steampowered.com/app/{$gameData['steam_appid']}'><div><img src='{$gameData['header_image']}'/><h1>{$gameData['name']}</h1></div></a></div>";
+}
+
 class Player {
     // public $name;
     public $id;
@@ -29,8 +33,8 @@ class Player {
     }
   }
 
-$player1 = new Player('76561197997640408');
-$player2 = new Player('76561197994769476');
+$player1 = new Player($id = false, $name = 'arkandiasmaniac');
+$player2 = new Player('76561197994769476', 'obayemi');
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,7 +44,7 @@ $player2 = new Player('76561197994769476');
 </head>
 <body>
   <div>
-    <h3>Available games:<h3>
+    <h3>You should play to:<h3>
       <?php
         $player1->getOwnedGames();
         $player2->getOwnedGames();
@@ -70,11 +74,11 @@ $player2 = new Player('76561197994769476');
                 return False;
             }
         );
-        array_rand($multi);
+      echo generateGameDiv($multi[array_rand($multi)]);
         //foreach ($multi as $game) {
             //echo "<li>{$game['name']}</li>\n";
         //}
-      ?>
+    ?>
   </div>
 </body>
 </html>
