@@ -1,20 +1,23 @@
+.body-wrap {
+	position: relative;
+	width: 600px;
+	height: 100%;
+	margin: auto;
+}
+
 .game-container {
 	position: relative;
 	margin: auto;
 	margin-top: 20%;
-	width: 450px;
 	height: 60px;
 	padding: 10px;
-	border: 1px solid grey;
-	border-radius: 10px;
-	background-image: url('https://steamstore-a.akamaihd.net/public/images/v6/blue_body_repeat.jpg?v=1');
 }
 
 .game-container div {
 	position: relative;
-	margin: auto;
-	width: 100%;
-	height: 100%;
+	border: 1px solid grey;
+	border-radius: 10px;
+	background-image: url('https://steamstore-a.akamaihd.net/public/images/v6/blue_body_repeat.jpg?v=1');
 }
 
 .game-container div * {
@@ -25,6 +28,7 @@
 }
 
 .game-container img {
+	padding-top: 3px;
 	width: 120px;
 	height: 60px;
 }

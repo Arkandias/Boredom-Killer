@@ -41,7 +41,7 @@ class Player {
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-  <div>
+  <div class="body-wrap">
     <?php
         if (isset($_REQUEST['player1']) and isset($_REQUEST['player2'])) {
     ?>
@@ -95,8 +95,8 @@ class Player {
         } else {
       ?>
     <h1>You're a lazy fuck?</h1>
-    <p>You want to play multiplayer / coop games with a friend but you cant agree on wich one?</p>
-    <p>enter your steam username and you friends'</p>
+    <p>You want to play multiplayer / coop games with a friend but you cant agree on which one?</p>
+    <p>Enter your steam custom url and you friends':</p>
     <form>
       <input name="player1" placeholder="dupond" />
       <input name="player2" placeholder="dupont"/>
