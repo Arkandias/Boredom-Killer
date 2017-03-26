@@ -33,8 +33,6 @@ class Player {
     }
   }
 
-$player1 = new Player($id = false, $name = 'arkandiasmaniac');
-$player2 = new Player('76561197994769476', 'obayemi');
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,8 +42,13 @@ $player2 = new Player('76561197994769476', 'obayemi');
 </head>
 <body>
   <div>
-    <h3>You should play to:<h3>
+    <?php
+        if (isset($_REQUEST['player1']) and isset($_REQUEST['player2'])) {
+    ?>
+    <h3>You should play to:</h3>
       <?php
+        $player1 = new Player($id = false, $name = $_REQUEST['player1']);
+        $player2 = new Player($id = false, $name = $_REQUEST['player2']);
         $player1->getOwnedGames();
         $player2->getOwnedGames();
         $commonGames = array_intersect(
@@ -74,11 +77,35 @@ $player2 = new Player('76561197994769476', 'obayemi');
                 return False;
             }
         );
-      echo generateGameDiv($multi[array_rand($multi)]);
+        $bestFit = $multi[array_rand($multi)];
+      ?>
+      <div class='game-container'>
+        <a href='steam://rungameid/<?= $bestFit['steam_appid'] ?>'>
+          <div>
+            <img src='<?= $bestFit['header_image'] ?>'/>
+            <h1><?= $bestFit['name'] ?></h1>
+          </div>
+        </a>
+      </div>
+      <?php
+        //echo generateGameDiv($multi[array_rand($multi)]);
         //foreach ($multi as $game) {
-            //echo "<li>{$game['name']}</li>\n";
+        //echo "<li>{$game['name']}</li>\n";
         //}
+        } else {
+      ?>
+    <h1>You're a lazy fuck?</h1>
+    <p>You want to play multiplayer / coop games with a friend but you cant agree on wich one?</p>
+    <p>enter your steam username and you friends'</p>
+    <form>
+      <input name="player1" placeholder="dupond" />
+      <input name="player2" placeholder="dupont"/>
+      <input type="submit" value="Submit">
+    </form>
+    <?php
+        }
     ?>
   </div>
+  <a href='' style='position: absolute; bottom: 0; right: 0;'>That guy's not my friend anymore, I want to play with someone else</a>
 </body>
 </html>
