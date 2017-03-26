@@ -1,7 +1,10 @@
 <?php
 class SteamApi {
   public function AppDetails($gameID) {
-    return json_decode(file_get_contents("http://store.steampowered.com/api/appdetails?appids={$gameID}"), true);
+    $result = json_decode(file_get_contents("http://store.steampowered.com/api/appdetails?appids={$gameID}"), true);
+    foreach ($result as $key => $value) {
+      return $value['data'];
+    }
   }
 
   public function GetOwnedGames($userID) {
