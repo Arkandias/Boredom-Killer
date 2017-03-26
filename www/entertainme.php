@@ -3,15 +3,20 @@ require_once 'php/steamApi.php';
 $api = new SteamApi();
 
 class Player {
-    public $name;
+    // public $name;
     public $id;
     public $game_list;
 
-    function __construct($id, $name = false) {
+    function __construct($id = false, $name = false) {
+      global $api;
       $this->id = $id;
       if ($name) {
-        $this->name = $name;
+        if (($result = $api->GetIdFromUrl($name))) {
+          $this->id = $result;
+        };
       }
+      // Retrieving user's display name
+      // $this->name = $api->GetPlayerSummaries($this->id)['personaname'];
     }
 
     public function getOwnedGames() {
@@ -36,7 +41,6 @@ $player2 = new Player('76561197994769476');
 <body>
   <div>
     <h3>Available games:<h3>
-    <ul>
       <?php
         $player1->getOwnedGames();
         $player2->getOwnedGames();
@@ -50,11 +54,27 @@ $player2 = new Player('76561197994769476');
             },
             $commonGames
         );
-        foreach ($detailed as $game) {
-            echo "<li>{$game['name']}</li>";
-        }
+        $multi = array_filter(
+            $detailed,
+            function ($game) {
+                foreach ($game['categories'] as $category) {
+                    if (
+                        $category['id'] == 1 // Multi-player
+                        || $category['id'] == 9 // Co-op
+                        || $category['id'] == 36 // Online Multi-Player
+                        || $category['id'] == 38 // Online Co-op
+                    ) {
+                        return True;
+                    }
+                }
+                return False;
+            }
+        );
+        array_rand($multi);
+        //foreach ($multi as $game) {
+            //echo "<li>{$game['name']}</li>\n";
+        //}
       ?>
-    </ul>
   </div>
 </body>
 </html>
