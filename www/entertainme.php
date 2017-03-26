@@ -3,7 +3,7 @@ require_once 'php/steamApi.php';
 $api = new SteamApi();
 
 function generateGameDiv($gameData) {
-  return "<div class='game-container'><a href='http://store.steampowered.com/app/{$gameData['steam_appid']}'><div><img src='{$gameData['header_image']}'/><h1>{$gameData['name']}</h1></div></a></div>";
+  return "<div class='game-container'><a href='steam://rungameid/{$gameData['steam_appid']}'><div><img src='{$gameData['header_image']}'/><h1>{$gameData['name']}</h1></div></a></div>";
 }
 
 class Player {
