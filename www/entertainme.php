@@ -2,6 +2,10 @@
 require_once 'php/steamApi.php';
 $api = new SteamApi();
 
+function generateGameDiv($gameData) {
+  return "<div class='game-container'><a href='http://store.steampowered.com/app/{$gameData['steam_appid']}'><div><img src='{$gameData['header_image']}'/><h1>{$gameData['name']}</h1></div></a></div>";
+}
+
 class Player {
     // public $name;
     public $id;
@@ -44,6 +48,7 @@ class Player {
       //   echo "<p>{$key['appid']}</p>";
       // }
       // echo $player1->name;
+      echo generateGameDiv($api->AppDetails('440'));
     ?>
   </div>
 </body>
